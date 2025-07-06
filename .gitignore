@@ -93,7 +93,13 @@ dist
 
 # Gatsby files
 .cache/
-public
+# public/ - commented out to allow frontend/public/index.html
+
+# Frontend public directory - ignore generated files but keep essential ones
+frontend/public/static/
+frontend/public/manifest.json
+frontend/public/favicon.ico
+!frontend/public/index.html
 
 # Storybook build outputs
 .out
