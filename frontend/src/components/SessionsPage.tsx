@@ -4,8 +4,7 @@ import {
   ChatBubbleLeftRightIcon, 
   TrashIcon,
   EyeIcon,
-  CalendarIcon,
-  ClockIcon
+  CalendarIcon
 } from '@heroicons/react/24/outline';
 import { formatDistanceToNow, format } from 'date-fns';
 

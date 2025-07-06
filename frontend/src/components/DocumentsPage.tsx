@@ -60,7 +60,7 @@ const DocumentsPage: React.FC = () => {
     setUploadProgress(0);
 
     try {
-      const uploadedDoc = await documentsAPI.upload(file, (progress) => {
+      await documentsAPI.upload(file, (progress) => {
         setUploadProgress(progress);
       });
 
