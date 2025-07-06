@@ -1,6 +1,6 @@
-# Contributing to Pal2
+# Contributing to Pal
 
-Thank you for your interest in contributing to Pal2! This document provides guidelines for contributing to the project.
+Thank you for your interest in contributing to Pal! This document provides guidelines for contributing to the project.
 
 ## Getting Started
 
@@ -12,6 +12,7 @@ Thank you for your interest in contributing to Pal2! This document provides guid
 ## Development Setup
 
 ### Backend Development
+
 ```bash
 cd backend
 npm install
@@ -21,6 +22,7 @@ npm run dev  # Uses nodemon for auto-restart
 ```
 
 ### Frontend Development
+
 ```bash
 cd frontend
 npm install
@@ -73,7 +75,7 @@ When reporting bugs:
 ## Project Structure
 
 ```
-Pal2/
+Pal/
 ├── backend/          # Express.js API server
 │   ├── src/
 │   │   ├── config/   # Database and environment config

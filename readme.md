@@ -1,8 +1,6 @@
-# Pal2 – AI-Powered FAQ Chatbot
+# Pal – AI-Powered FAQ Chatbot
 
-**Pal2** is an AI assistant that reads and understands FAQ documents (PDF, HTML, TXT). It answers user questions based on your company's data, remembers conversations, and can search the web when it doesn't know the answer. Ideal for customer support, onboarding, or product help desks.al – AI-Powered FAQ Chatbot
-
-**Pal** is an AI assistant that reads and understands FAQ documents (PDF or HTML). It answers user questions based on your company’s data, remembers conversations, and can search the web when it doesn’t know the answer. Ideal for customer support, onboarding, or product help desks.
+**Pal** is an AI assistant that reads and understands FAQ documents (PDF, HTML, TXT). It answers user questions based on your company's data, remembers conversations, and can search the web when it doesn't know the answer. Ideal for customer support, onboarding, or product help desks.
 
 ---
 
@@ -48,7 +46,7 @@
 
    ```bash
    git clone <your-repo-url>
-   cd Pal2
+   cd Pal
    ```
 
 2. **Backend Setup**

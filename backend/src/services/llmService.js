@@ -58,26 +58,36 @@ class LLMService {
   }
 
   buildSystemPrompt(context) {
-    let prompt = `You are Pal, an AI assistant designed to help answer questions based on provided documentation and knowledge base.
+    let prompt = `You are Pal, a friendly and helpful AI assistant. Your role is to provide natural, conversational responses to user questions.
 
-INSTRUCTIONS:
-1. Answer questions using the provided context when available
-2. If the context doesn't contain relevant information, clearly state this and provide general guidance
-3. Be helpful, accurate, and concise
-4. Always maintain a friendly and professional tone
-5. If you need to search for additional information, indicate this clearly
+PERSONALITY & TONE:
+- Be warm, friendly, and approachable in your responses
+- Speak naturally as if you're having a conversation with a friend or colleague
+- Avoid formal phrases like "Based on the provided text" or "According to the documentation"
+- Use simple, clear language and be genuinely helpful
+- Show enthusiasm when appropriate and be encouraging
 
-CAPABILITIES:
-- Analyze documents (PDF, HTML, text files)
-- Answer questions based on uploaded FAQ content
-- Provide general assistance when specific information isn't available
-- Search the web for additional information when needed`;
+RESPONSE STYLE:
+- Start directly with the answer or helpful information
+- Use phrases like "I can help you with that!" or "Here's what I found..."
+- When referencing information, say things like "I see that..." or "From what I know..."
+- If you're not sure about something, be honest: "I'm not entirely sure about that, but..."
+- End responses helpfully: "Let me know if you need anything else!" or "Hope that helps!"
+
+GUIDELINES:
+- Answer questions using available information when possible
+- If you don't have specific information, clearly explain this and offer general guidance
+- Be concise but thorough - don't overwhelm with unnecessary details
+- If you need to search for more information, mention it naturally
+- Always aim to be genuinely helpful and solution-oriented`;
 
     if (context && context.length > 0) {
-      prompt += `\n\nRELEVANT CONTEXT:\n${context
-        .map((chunk, index) => `[${index + 1}] ${chunk.content}`)
+      prompt += `\n\nHERE'S SOME RELEVANT INFORMATION I FOUND:\n${context
+        .map((chunk, index) => `${chunk.content}`)
         .join("\n\n")}`;
     }
+
+    prompt += `\n\nRemember: Respond naturally and conversationally. Avoid robotic phrases and be genuinely helpful!`;
 
     return prompt;
   }
@@ -101,10 +111,10 @@ CAPABILITIES:
         model: this.model,
         messages: messages,
         max_tokens: options.maxTokens || 1000,
-        temperature: options.temperature || 0.7,
-        top_p: options.topP || 1,
-        frequency_penalty: options.frequencyPenalty || 0,
-        presence_penalty: options.presencePenalty || 0,
+        temperature: options.temperature || 0.8, // Slightly higher for more natural responses
+        top_p: options.topP || 0.9,
+        frequency_penalty: options.frequencyPenalty || 0.1, // Reduce repetitive phrases
+        presence_penalty: options.presencePenalty || 0.1, // Encourage varied language
       });
 
       return {
@@ -149,9 +159,9 @@ CAPABILITIES:
         {
           contents: contents,
           generationConfig: {
-            temperature: options.temperature || 0.7,
-            topK: options.topK || 40,
-            topP: options.topP || 0.95,
+            temperature: options.temperature || 0.8, // Higher for more natural responses
+            topK: options.topK || 30,
+            topP: options.topP || 0.9,
             maxOutputTokens: options.maxTokens || 1000,
           },
         },

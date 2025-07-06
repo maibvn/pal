@@ -21,27 +21,59 @@ if not exist "frontend" (
 REM Start backend first
 echo Starting backend server...
 cd backend
-if exist "start.bat" (
-    start "Pal Backend" cmd /k "start.bat"
-) else (
-    echo Backend start script not found
+
+REM Check if Node.js is available
+node --version >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Error: Node.js is not installed or not in PATH
+    echo Please install Node.js from https://nodejs.org/
     pause
     exit /b 1
 )
 
+REM Check if dependencies are installed
+if not exist "node_modules" (
+    echo Installing backend dependencies...
+    npm install
+    if %errorlevel% neq 0 (
+        echo Error: Failed to install backend dependencies
+        pause
+        exit /b 1
+    )
+)
+
+REM Check if .env file exists
+if not exist ".env" (
+    echo Error: .env file not found in backend directory
+    echo Please ensure you have configured the .env file with your API keys
+    pause
+    exit /b 1
+)
+
+echo Backend starting...
+start "Pal Backend" cmd /k "npm start"
+
 REM Wait a moment for backend to start
-timeout /t 5 /nobreak
+echo Waiting for backend to initialize...
+timeout /t 8 /nobreak
 
 REM Start frontend
 echo Starting frontend...
 cd ..\frontend
-if exist "package.json" (
-    start "Pal Frontend" cmd /k "npm start"
-) else (
-    echo Frontend package.json not found
-    pause
-    exit /b 1
+
+REM Check if frontend dependencies are installed
+if not exist "node_modules" (
+    echo Installing frontend dependencies...
+    npm install
+    if %errorlevel% neq 0 (
+        echo Error: Failed to install frontend dependencies
+        pause
+        exit /b 1
+    )
 )
+
+echo Frontend starting...
+start "Pal Frontend" cmd /k "set PORT=3000 && npm start"
 
 echo.
 echo ====================================
@@ -52,6 +84,9 @@ echo Frontend: http://localhost:3000
 echo ====================================
 echo.
 echo Both servers should open in separate windows.
+echo If the frontend port conflicts, it will prompt to use 3001.
 echo Close those windows to stop the servers.
+echo.
+echo Note: Make sure you have configured your API keys in backend\.env
 echo.
 pause

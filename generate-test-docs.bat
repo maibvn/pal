@@ -1,12 +1,12 @@
 @echo off
 echo ===============================================
-echo Pal2 Test Documentation Generator
+echo Pal Test Documentation Generator
 echo ===============================================
 echo.
 
 REM Check if we're in the right directory
 if not exist "backend\package.json" (
-    echo Error: Please run this script from the Pal2 project root directory
+    echo Error: Please run this script from the Pal project root directory
     echo Current directory: %CD%
     pause
     exit /b 1
@@ -92,7 +92,7 @@ echo    - Use the sample data files in test-documentation\sample-data\
 echo    - Follow the testing instructions in the documentation
 echo    - Upload the sample files to test document processing
 echo.
-echo 4. Start Pal2 for testing:
+echo 4. Start Pal for testing:
 echo    - Run: start-pal.bat (to start the application)
 echo    - Open browser to: http://localhost:3000
 echo    - Upload sample files and test the FAQ functionality
