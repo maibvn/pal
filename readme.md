@@ -281,6 +281,32 @@ npm install
 npm start
 ```
 
+### Running Tests
+
+```bash
+# Backend tests
+cd backend
+npm test
+
+# Backend tests with coverage
+npm run test:coverage
+
+# Frontend tests
+cd frontend
+npm test
+```
+
+### CI/CD Pipeline
+
+The project includes a simple GitHub Actions CI/CD pipeline that:
+
+1. **Installs dependencies** for both backend and frontend
+2. **Runs basic tests** to ensure code quality
+3. **Builds the frontend** to check for build errors
+4. **Performs basic startup checks** for the backend
+
+The CI is designed to be simple and reliable - it focuses on essential checks rather than complex testing scenarios.
+
 ### Adding New Features
 
 1. **Backend**: Add new endpoints in `src/routes/`
