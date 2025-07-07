@@ -31,16 +31,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-REM Check if dependencies are installed
-if not exist "node_modules" (
-    echo Installing backend dependencies...
-    npm install
-    if %errorlevel% neq 0 (
-        echo Error: Failed to install backend dependencies
-        pause
-        exit /b 1
-    )
-)
+REM Start the backend server
 
 REM Check if .env file exists
 if not exist ".env" (
@@ -61,16 +52,7 @@ REM Start frontend
 echo Starting frontend...
 cd ..\frontend
 
-REM Check if frontend dependencies are installed
-if not exist "node_modules" (
-    echo Installing frontend dependencies...
-    npm install
-    if %errorlevel% neq 0 (
-        echo Error: Failed to install frontend dependencies
-        pause
-        exit /b 1
-    )
-)
+REM Start the frontend server
 
 echo Frontend starting...
 start "Pal Frontend" cmd /k "set PORT=3000 && npm start"
